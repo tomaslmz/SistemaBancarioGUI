@@ -16,7 +16,6 @@ public class Cliente {
 	
 	public boolean setNome(String nome) {
 		if(nome.isEmpty()) {
-			this.nome = "Valor inválido!";
 			JOptionPane.showMessageDialog(null, "Nome inválido!");
 			return false;
 		} else {
