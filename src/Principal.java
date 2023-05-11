@@ -366,8 +366,7 @@ public class Principal {
 		
 		String senha1;
 		
-		//if(!conta.getNumero().equals("-1") && cliente.getCodigo() != -1) {
-		if(true) {
+		if(!conta.getNumero().equals("-1") && cliente.getCodigo() != -1) {
 			do {
 				login = JOptionPane.showOptionDialog(
 						frame,
