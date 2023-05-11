@@ -10,7 +10,7 @@ public class Cliente {
 	private Calendar dataNascimento;
 	private String endereco; //Rua, número, bairro, cidade
 	private String telefone;
-	private int codigo;
+	private int codigo = -1;
 	private float rendaMensal;
 	private String empregado;
 	
@@ -78,14 +78,12 @@ public class Cliente {
 	
 	public boolean setTelefone(String telefone) {
 		if(telefone.isEmpty()) {
-			this.telefone = "Valor inválido!";
 			JOptionPane.showMessageDialog(null, "Telefone inválido!");
 			return false;
-		} else if(telefone.length() == 15) {
+		} else if(telefone.length() >= 16){
 			this.telefone = telefone;
 			return true;
 		} else {
-			this.telefone = "Valor inválido!";
 			JOptionPane.showMessageDialog(null, "Telefone inválido!");
 			return false;
 		}
@@ -116,43 +114,35 @@ public class Cliente {
 	}
 	
 	public String getNome() {
-		return "Cliente: " + nome;
+		return nome;
 	}
 	
 	public String getCpf() {
-		return "CPF: " + cpf;
+		return cpf;
 	}
 	
 	public String getDataNasc() {
-		if(dataNascimento == null) {
-			return "Data de nascimento: Valor inválido!";
-		} else {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			return "Data de nascimento: " + sdf.format(dataNascimento.getTime());
-		}
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return "" + sdf.format(dataNascimento.getTime());
 	}
 	
 	public String getEndereco() {
-		return "Endereço: " + endereco;
+		return endereco;
 	}
 	
 	public String getTelefone() {
-		return "Telefone: " + telefone;
+		return telefone;
 	}
 	
-	public String getCodigo() {
-		return "Código: " + codigo;
+	public int getCodigo() {
+		return codigo;
 	}
 	
-	public String getRendaMensal() {
-		if(rendaMensal > 0) {
-			return "Renda mensal: R$" + rendaMensal;
-		} else {
-			return "Renda mensal: Valor inválido!";
-		}
+	public float getRendaMensal() {
+		return rendaMensal;
 	}
 	
 	public String getEmpregado() {
-		return "Empregado: " + empregado;
+		return empregado;
 	}
 }
