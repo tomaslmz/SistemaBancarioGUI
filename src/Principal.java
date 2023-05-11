@@ -83,10 +83,12 @@ public class Principal {
 					);
 			senha1 = new String(txtSenha.getPassword());
 			senha2 = new String(txtRepetirSenha.getPassword());
-		} while(abrirconta == 1 && (!conta.setDigito(txtDigito.getText()) || !conta.setSenha(senha1, senha2, 1)));
+		} while(abrirconta == 2 && (!(txtDigito.getText().length() == 1) && !(txtDigito.getText().matches("^[0-9]*$")) && !(senha1.equals(senha2)) && !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"))));
 		
 		if(abrirconta == 2) {
 			conta.setNumero(Integer.parseInt(txtNumero.getText()));
+			conta.setDigito(txtDigito.getText());
+			conta.setSenha(senha1, senha2, 1);
 		}
 	}
 	
@@ -241,16 +243,17 @@ public class Principal {
 		JLabel texto = new JLabel("Saldo: R$" + conta.getSaldo());
 		JLabel texto2 = new JLabel("Limite: R$" + conta.getLimite());
 		JLabel linha = new JLabel(" ");
-		JLabel saqueTexto = new JLabel("Digite o quanto deseja sacar: ");
-		JTextField saldo = new JTextField();
+		JLabel lbSaque = new JLabel("Digite o quanto deseja sacar: ");
+		JTextField txtSaque = new JTextField();
 		
 		JPanel componentes = new JPanel();
 		
+		componentes.setLayout(new BoxLayout(componentes, BoxLayout.Y_AXIS));
 		componentes.add(texto);
 		componentes.add(texto2);
 		componentes.add(linha);
-		componentes.add(saqueTexto);
-		componentes.add(saldo);
+		componentes.add(lbSaque);
+		componentes.add(txtSaque);
 		
 		Object[] options = {"Sair", "Sacar"};
 		
@@ -268,8 +271,11 @@ public class Principal {
 					options[1]);
 			
 			if(saque == 1) {
-				conta.setSaldo(3, Double.parseDouble(saldo.getText()));
+				conta.setSaldo(2, Double.parseDouble(txtSaque.getText()));
+				texto.setText("Saldo: R$" + conta.getSaldo());
+				texto2.setText("Limite: R$" + conta.getLimite());
 			}
+
 		} while(saque == 1);
 	}
 	

@@ -35,22 +35,18 @@ public class Conta {
 	}
 	public boolean setSaldo(int escolha, double saldo) {
 		if(escolha == 2) {
-			if(this.saldo+limite > saldo) {
+			if(this.saldo >= saldo) {
 				this.saldo = this.saldo-saldo;
 				return true;
-			} else {
-				return false;
+			} else if(this.saldo < saldo && this.saldo+limite>=saldo) {
+				this.saldo = this.saldo-saldo;
+				limite = limite-saldo;
+				return true;
 			}
 		} else if(escolha == 3) {
 			if(saldo > 0) {
 				this.saldo = this.saldo + saldo;
 				return true;
-			} else if(this.saldo+limite >= saldo) {
-				this.saldo = (this.saldo+limite)-saldo;
-				limite = limite + (this.saldo-saldo);
-				return true;
-			} else {
-				return false;
 			}
 		}
 		
