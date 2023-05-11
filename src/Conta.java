@@ -42,11 +42,15 @@ public class Conta {
 				this.saldo = this.saldo-saldo;
 				limite = limite-saldo;
 				return true;
+			} else {
+				JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente!");
 			}
 		} else if(escolha == 3) {
 			if(saldo > 0) {
 				this.saldo = this.saldo + saldo;
 				return true;
+			} else {
+				JOptionPane.showMessageDialog(null, "Insira um valor maior que zero!");
 			}
 		}
 		

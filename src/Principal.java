@@ -267,26 +267,35 @@ public class Principal {
 		
 		Object[] options = {"Sair", "Sacar"};
 		
-		int saque;
+		int saque = 3;
 		
-		do {
-			saque = JOptionPane.showOptionDialog(
-					frame,
-					componentes,
-					"Saque",
-					JOptionPane.YES_NO_OPTION,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					options,
-					options[1]);
-			
-			if(saque == 1) {
-				conta.setSaldo(2, Double.parseDouble(txtSaque.getText()));
-				texto.setText("Saldo: R$" + conta.getSaldo());
-				texto2.setText("Limite: R$" + conta.getLimite());
-			}
+		while(saque != 0) {
+			do {
+				saque = JOptionPane.showOptionDialog(
+						frame,
+						componentes,
+						"Saque",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]);
+				
+				if(txtSaque.getText().isEmpty()) {
+					txtSaque.setText("0");
+				}
+				
+				if(saque == 1) {
+					conta.setSaldo(2, Double.parseDouble(txtSaque.getText()));
+					texto.setText("Saldo: R$" + conta.getSaldo());
+					texto2.setText("Limite: R$" + conta.getLimite());
+				}
+				
+				
 
-		} while(saque == 1);
+			} while(saque == 1 && (!(conta.getSaldo() >= Double.parseDouble(txtSaque.getText())) || !(conta.getSaldo() < Double.parseDouble(txtSaque.getText()) && conta.getSaldo()+conta.getLimite() >= Double.parseDouble(txtSaque.getText()))));
+		
+		}
 	}
 	
 	public static void login() {
@@ -386,6 +395,7 @@ public class Principal {
 				break;
 				case 3:
 					aberto = 0;
+					System.exit(0);
 				break;
 			}
 			
