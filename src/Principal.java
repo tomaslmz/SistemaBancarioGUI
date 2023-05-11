@@ -83,12 +83,12 @@ public class Principal {
 					);
 			senha1 = new String(txtSenha.getPassword());
 			senha2 = new String(txtRepetirSenha.getPassword());
-			if(abrirconta == 2) {
+			if(abrirconta == 1) {
 				conta.setNumero(Integer.parseInt(txtNumero.getText()));
 				conta.setDigito(txtDigito.getText());
 				conta.setSenha(senha1, senha2, 1);
 			}
-		} while(abrirconta == 2 && (!(txtDigito.getText().length() == 1) && !(txtDigito.getText().matches("^[0-9]*$")) && !(senha1.equals(senha2)) && !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"))));
+		} while(abrirconta == 1 && (!(txtDigito.getText().length() == 1) || !(txtDigito.getText().matches("^[0-9]*$")) || !(senha1.equals(senha2)) || !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"))));
 	}
 	
 	public static void registrar() {
@@ -184,7 +184,7 @@ public class Principal {
 					cliente.setCodigo(Integer.parseInt(txtCodigo.getText()));
 					cliente.setRendaMensal(Float.parseFloat(txtRendaMensal.getText()));
 				}
-			} while(registro == 1 && (txtNome.getText().isEmpty() && txtCpf.getText().isEmpty() && !(txtCpf.getText().length() == 14) && !(txtDataNasc.getText().matches("\\d{2}/\\d{2}/\\d{4}")) && txtEndereco.getText().isEmpty() && txtTelefone.getText().isEmpty() && !(txtTelefone.getText().length() >= 16) && !(Integer.parseInt(txtCodigo.getText()) > 0) && !(Float.parseFloat(txtRendaMensal.getText()) > 0)));
+			} while(registro == 1 && (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || !(txtCpf.getText().length() == 14) || !(txtDataNasc.getText().matches("\\d{2}/\\d{2}/\\d{4}")) || txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || !(txtTelefone.getText().length() >= 16) || !(Integer.parseInt(txtCodigo.getText()) > 0) || !(Float.parseFloat(txtRendaMensal.getText()) > 0)));
 			
 			conta.setTitular(cliente);
 		} else {
