@@ -298,6 +298,36 @@ public class Principal {
 		}
 	}
 	
+	public static void menu() {
+		Frame frame = new Frame();
+		
+		Object[] opcoes2 = {"Depositar", "Sacar", "Sair"};
+		
+		int escolher = 3;
+		
+		while(escolher != 2) {
+			escolher = JOptionPane.showOptionDialog(
+					frame,
+					"Escolha o que deseja usar",
+					"Escolha",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					opcoes2,
+					opcoes2[1]);
+			
+			switch(escolher) {
+				case 0:
+					depositar();
+				break;
+				case 1:
+					sacar();
+				break;
+				case 2:
+					JOptionPane.showMessageDialog(null, "Saindo...");
+			}
+		}
+	}
 	public static void login() {
 		
 		Frame frame = new Frame();
@@ -330,7 +360,13 @@ public class Principal {
 						options[1]);
 				
 				senha1 = new String(txtSenha.getPassword());
-			} while(login == 2 && (!conta.getSenha(senha1) && conta.getTentativas() < 3));
+				
+				if(login == 1 && conta.getTentativas() < 3 && !senha1.isEmpty()) {
+					if(conta.getSenha(senha1)) {
+						menu();
+					}
+				}
+			} while(login == 1 && !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")) && conta.getTentativas() < 3);
 			
 			if(conta.getTentativas() == 3) {
 				JOptionPane.showMessageDialog(null, "Excedeu o limite de tentativas!");
@@ -338,33 +374,6 @@ public class Principal {
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Você precisa abrir uma conta e registrar cliente primeiro!");
-		}
-		
-		if(conta.getSenha(senha1)) {
-			Frame frame2 = new Frame();
-			
-			Object[] opcoes2 = {"Depositar", "Sacar", "Sair"};
-			
-			int escolher = JOptionPane.showOptionDialog(
-					frame,
-					"Escolha o que deseja usar",
-					"Escolha",
-					JOptionPane.YES_NO_OPTION,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					opcoes2,
-					opcoes2[1]);
-			
-			switch(escolher) {
-				case 0:
-					depositar();
-				break;
-				case 1:
-					sacar();
-				break;
-				case 2:
-					JOptionPane.showMessageDialog(null, "Saindo...");
-			}
 		}
 	}
 	
