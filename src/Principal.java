@@ -240,7 +240,10 @@ public class Principal {
 				if(txtSaldo.getText().isEmpty()) {
 					txtSaldo.setText("0");
 				}
-			} while(deposito == 1 && !conta.setSaldo(3, Double.parseDouble(txtSaldo.getText())));
+				if(deposito == 1) {
+					conta.setSaldo(3, Double.parseDouble(txtSaldo.getText()));
+				}
+			} while(deposito == 1 && !(Double.parseDouble(txtSaldo.getText()) > 0));
 		}
 	}
 
