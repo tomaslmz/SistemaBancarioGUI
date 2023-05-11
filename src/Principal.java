@@ -21,13 +21,16 @@ import javax.swing.text.NumberFormatter;
 
 public class Principal {
 	
+	//Declaração de classes externas
 	static Cliente cliente = new Cliente();
 	static Conta conta = new Conta();
 	static int aberto = 1;
 	
 	public static void abrirConta() {
+		//Declarações para a interface
 		Frame frame = new Frame();
 		
+		//Declaração de formatação de número
 		NumberFormat format = NumberFormat.getIntegerInstance();
 		format.setGroupingUsed(false);
 		NumberFormatter formatter = new NumberFormatter(format);
@@ -70,6 +73,8 @@ public class Principal {
 		String senha2;
 		Object[] options = {"Voltar", "Abrir conta"};
 		int abrirconta;
+		
+		//Início da interface
 		do {
 			abrirconta = JOptionPane.showOptionDialog(
 					frame,
@@ -81,6 +86,8 @@ public class Principal {
 					options,
 					options[1]
 					);
+			
+			//Declarando as senhas como String, já que por padrão vem como char[]
 			senha1 = new String(txtSenha.getPassword());
 			senha2 = new String(txtRepetirSenha.getPassword());
 			if(abrirconta == 1) {
@@ -89,9 +96,10 @@ public class Principal {
 				conta.setSenha(senha1, senha2, 1);
 			}
 		} while(abrirconta == 1 && (!(txtDigito.getText().length() == 1) || !(txtDigito.getText().matches("^[0-9]*$")) || !(senha1.equals(senha2)) || !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"))));
-	}
+	}//Validação de dados acima
 	
 	public static void registrar() {
+		//Declaração para interface
 		Frame frame = new Frame();
 		
 		JLabel lbNome = new JLabel("Nome: ");
@@ -99,6 +107,8 @@ public class Principal {
 		
 		JLabel lbCpf = new JLabel("CPF: ");
 		JFormattedTextField txtCpf = new JFormattedTextField();
+		
+		//Declaração de máscara
 		MaskFormatter maskCpf;
 		try {
 			maskCpf = new MaskFormatter("###.###.###-##");
@@ -110,6 +120,8 @@ public class Principal {
 		
 		JLabel lbDataNasc = new JLabel("Digite a sua data de nascimento: ");
 		JFormattedTextField txtDataNasc = new JFormattedTextField();
+		
+		//Declaração de máscara
 		MaskFormatter maskDataNasc;
 		try {
 			maskDataNasc = new MaskFormatter("##/##/####");
@@ -123,6 +135,8 @@ public class Principal {
 		
 		JLabel lbTelefone = new JLabel("Digite o seu telefone: ");
 		JFormattedTextField txtTelefone = new JFormattedTextField();
+		
+		//Declaração de máscara
 		MaskFormatter maskTelefone;
 		try {
 			maskTelefone = new MaskFormatter("(##) # ####-####");
@@ -161,8 +175,10 @@ public class Principal {
 		Object[] options= {"Voltar", "Registrar"};
 		int registro;
 		componentes.setLayout(new BoxLayout(componentes, BoxLayout.Y_AXIS));
-		//if(!conta.getNumero().equals("-1")) {
-		if(true) {
+		
+		//Validação para evitar que a pessoa declare um cliente sem abrir conta antes
+		if(!conta.getNumero().equals("-1")) {
+			//Início da interface
 			do {
 				registro = JOptionPane.showOptionDialog(
 						frame,
@@ -185,10 +201,13 @@ public class Principal {
 					cliente.setRendaMensal(Float.parseFloat(txtRendaMensal.getText()));
 				}
 			} while(registro == 1 && (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || !(txtCpf.getText().length() == 14) || !(txtDataNasc.getText().matches("\\d{2}/\\d{2}/\\d{4}")) || txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || !(txtTelefone.getText().length() >= 16) || !(Integer.parseInt(txtCodigo.getText()) > 0) || !(Float.parseFloat(txtRendaMensal.getText()) > 0)));
+			//Validações de dados acima
 			
+			//Vinculando o cliente à conta
 			conta.setTitular(cliente);
 		} else {
 			JOptionPane.showMessageDialog(null, "Você precisa abrir uma conta primeiro!");
+			//Mensagem de erro
 		}
 	}
 	
@@ -328,6 +347,7 @@ public class Principal {
 			}
 		}
 	}
+	
 	public static void login() {
 		
 		Frame frame = new Frame();
