@@ -35,7 +35,9 @@ public class Conta {
 	}
 	public boolean setSaldo(int escolha, double saldo) {
 		if(escolha == 2) {
-			if(this.saldo >= saldo) {
+			if(saldo < 0) {
+				JOptionPane.showMessageDialog(null, "Insira um valor válido!");
+			} else if(this.saldo >= saldo) {
 				this.saldo = this.saldo-saldo;
 				return true;
 			} else if(this.saldo < saldo && this.saldo+limite>=saldo) {

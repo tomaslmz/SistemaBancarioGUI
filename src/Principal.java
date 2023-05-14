@@ -96,6 +96,9 @@ public class Principal {
 				conta.setSenha(senha1, senha2, 1);
 			}
 		} while(abrirconta == 1 && (!(txtDigito.getText().length() == 1) || !(txtDigito.getText().matches("^[0-9]*$")) || !(senha1.equals(senha2)) || !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$"))));
+		if(!(!(txtDigito.getText().length() == 1) || !(txtDigito.getText().matches("^[0-9]*$")) || !(senha1.equals(senha2)) || !(senha1.matches("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")))) {
+			JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
+		}
 	}//Validação de dados acima
 	
 	public static void registrar() {
@@ -200,8 +203,13 @@ public class Principal {
 					cliente.setCodigo(Integer.parseInt(txtCodigo.getText()));
 					cliente.setRendaMensal(Float.parseFloat(txtRendaMensal.getText()));
 				}
+				
 			} while(registro == 1 && (txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || !(txtCpf.getText().length() == 14) || !(txtDataNasc.getText().matches("\\d{2}/\\d{2}/\\d{4}")) || txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || !(txtTelefone.getText().length() >= 16) || !(Integer.parseInt(txtCodigo.getText()) > 0) || !(Float.parseFloat(txtRendaMensal.getText()) > 0)));
 			//Validações de dados acima
+			
+			if(!(txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || !(txtCpf.getText().length() == 14) || !(txtDataNasc.getText().matches("\\d{2}/\\d{2}/\\d{4}")) || txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || !(txtTelefone.getText().length() >= 16) || !(Integer.parseInt(txtCodigo.getText()) > 0) || !(Float.parseFloat(txtRendaMensal.getText()) > 0))) {
+				JOptionPane.showMessageDialog(null, "Cliente registrado com sucesso!");
+			}
 			
 			//Vinculando o cliente à conta
 			conta.setTitular(cliente);
@@ -327,7 +335,7 @@ public class Principal {
 		while(escolher != 2) {
 			escolher = JOptionPane.showOptionDialog(
 					frame,
-					"Escolha o que deseja usar",
+					"Olá, " + cliente.getNome() + ". Seja bem-vindo!\nR$" + conta.getSaldo() + "\nEscolha a função que deseja:\n",
 					"Escolha",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE,
