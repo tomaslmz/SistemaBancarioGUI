@@ -1,20 +1,12 @@
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
-
-import java.awt.Component;
-import java.awt.Dialog;
 import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.NumberFormat;
 import javax.swing.text.NumberFormatter;
@@ -335,7 +327,7 @@ public class Principal {
 		while(escolher != 2) {
 			escolher = JOptionPane.showOptionDialog(
 					frame,
-					"Olá, " + cliente.getNome() + ". Seja bem-vindo!\nR$" + conta.getSaldo() + "\nEscolha a função que deseja:\n",
+					"Olá, " + cliente.getNome() + "(" + conta.getNumero() + ")" + ". Seja bem-vindo!\nR$" + conta.getSaldo() + "\nEscolha a função que deseja:\n",
 					"Escolha",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE,
