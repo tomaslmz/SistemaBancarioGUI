@@ -327,7 +327,7 @@ public class Principal {
 		while(escolher != 2) {
 			escolher = JOptionPane.showOptionDialog(
 					frame,
-					"Olá, " + cliente.getNome() + "(" + conta.getNumero() + ")" + ". Seja bem-vindo!\nR$" + conta.getSaldo() + "\nEscolha a função que deseja:\n",
+					"Olá, " + cliente.getNome() + " (" + conta.getNumero() + ")" + ". Seja bem-vindo!\nR$" + conta.getSaldo() + "\nEscolha a função que deseja:\n",
 					"Escolha",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE,

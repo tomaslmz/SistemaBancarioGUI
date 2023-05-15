@@ -41,8 +41,8 @@ public class Conta {
 				this.saldo = this.saldo-saldo;
 				return true;
 			} else if(this.saldo < saldo && this.saldo+limite>=saldo) {
+				limite = limite+(this.saldo - saldo);
 				this.saldo = this.saldo-saldo;
-				limite = limite-saldo;
 				return true;
 			} else {
 				JOptionPane.showMessageDialog(null, "Você não possui saldo suficiente!");
